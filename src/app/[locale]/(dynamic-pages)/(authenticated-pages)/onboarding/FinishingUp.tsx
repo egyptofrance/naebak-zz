@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { useMinDelayCondition } from "@/hooks/useMinDelayCondition";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { getMaybeDefaultWorkspace } from "@/data/user/workspaces";
 import { getWorkspaceSubPath } from "@/utils/workspaces";
 import { useEffect, useMemo, useState } from "react";
@@ -27,6 +27,8 @@ export function FinishingUp() {
     acceptTermsActionState,
   } = useOnboarding();
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1];
 
   const steps: Step[] = [
     {
@@ -120,7 +122,7 @@ export function FinishingUp() {
         router.push(getWorkspaceSubPath(initialWorkspace.workspace, "/home"));
       } else {
         // Fallback if no workspace is found, though this should ideally not happen
-        router.push("/oops");
+        router.push(getWorkspaceSubPath(initialWorkspace.workspace, "/oops"));
       }
     },
     minDelayMs: 500,
