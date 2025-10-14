@@ -1,0 +1,13 @@
+{
+  "HomePage": {
+    "title": "صفحة Nextbase الرئيسية",
+    "description": "مرحباً بك في صفحة Nextbase الرئيسية: بوابتك للابتكار. اكتشف مستقبل التميز وارتقِ بتجربتك."
+  },
+  "LocaleSwitcher": {
+    "label": "تغيير اللغة",
+    "localeLabels": {
+      "ar": "العربية"
+    }
+  }
+}
+
