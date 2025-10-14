@@ -3,6 +3,9 @@ import { anonGetAllAuthors } from "@/data/anon/marketing-blog";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+
+// Force dynamic rendering to avoid build-time fetch errors
+export const dynamic = 'force-dynamic';
 import AuthorCard from "../AuthorCard";
 
 export default async function BlogPostPage(props: {

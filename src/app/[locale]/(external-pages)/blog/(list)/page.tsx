@@ -8,6 +8,9 @@ import { Suspense } from "react";
 import { PublicBlogList } from "../PublicBlogList";
 import { TagsNav } from "../TagsNav";
 
+// Force dynamic rendering to avoid build-time fetch errors
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: "Blog List | Nextbase",
   description: "Collection of the latest blog posts from the team at Nextbase",

@@ -1,3 +1,6 @@
+// Force dynamic rendering to avoid build-time fetch errors
+export const dynamic = 'force-dynamic';
+
 import {
   anonGetPublishedBlogPostBySlug,
   anonGetPublishedBlogPosts,
