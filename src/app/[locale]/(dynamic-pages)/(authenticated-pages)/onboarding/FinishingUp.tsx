@@ -8,6 +8,8 @@ import {
 import { useMinDelayCondition } from "@/hooks/useMinDelayCondition";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { getMaybeDefaultWorkspace } from "@/data/user/workspaces";
+import { getWorkspaceSubPath } from "@/utils/workspaces";
 import { useEffect, useMemo, useState } from "react";
 import { FLOW_STATE, useOnboarding } from "./OnboardingContext";
 
@@ -85,7 +87,7 @@ export function FinishingUp() {
 
   useMinDelayCondition({
     enabled: true,
-    onComplete: () => {
+    onComplete: async () => {
       setCurrentStepId("PROFILE");
     },
     minDelayMs: 500,
@@ -94,7 +96,7 @@ export function FinishingUp() {
 
   useMinDelayCondition({
     enabled: currentStepId === "PROFILE",
-    onComplete: () => {
+    onComplete: async () => {
       setCurrentStepId("SETUP_WORKSPACES");
     },
     minDelayMs: 500,
@@ -103,7 +105,7 @@ export function FinishingUp() {
 
   useMinDelayCondition({
     enabled: currentStepId === "SETUP_WORKSPACES",
-    onComplete: () => {
+    onComplete: async () => {
       setCurrentStepId("FINISHING_UP");
     },
     minDelayMs: 500,
@@ -112,8 +114,14 @@ export function FinishingUp() {
 
   useMinDelayCondition({
     enabled: currentStepId === "FINISHING_UP",
-    onComplete: () => {
-      router.push("/home");
+    onComplete: async () => {
+      const initialWorkspace = await getMaybeDefaultWorkspace();
+      if (initialWorkspace) {
+        router.push(getWorkspaceSubPath(initialWorkspace.workspace, "/home"));
+      } else {
+        // Fallback if no workspace is found, though this should ideally not happen
+        router.push("/oops");
+      }
     },
     minDelayMs: 500,
     condition: true,
