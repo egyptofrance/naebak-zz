@@ -21,11 +21,7 @@ export function getWorkspaceSubPath(
 ): string {
   if (isWorkspace(arg)) {
     const workspace = arg;
-    if (workspace.membershipType === "solo") {
-      // TODO: solo workspaces are the root workspace, so we don't need to include the workspace slug
-      // remove the workspace slug from the subpath
-      return urlJoin(`/`, subPath);
-    }
+
     return urlJoin(`/workspace/${workspace.slug}`, subPath);
   }
   return urlJoin(`/workspace/${arg}`, subPath);
