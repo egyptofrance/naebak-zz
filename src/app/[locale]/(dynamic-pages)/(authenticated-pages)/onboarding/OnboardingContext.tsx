@@ -170,7 +170,7 @@ export function OnboardingProvider({
   const profileUpdateActionState = useOptimisticAction(
     updateUserFullNameAction,
     {
-      onExecute: () => {
+      onSuccess: () => {
         nextStep();
       },
       onError: () => {
@@ -186,7 +186,7 @@ export function OnboardingProvider({
   const acceptTermsActionState = useOptimisticAction(
     acceptTermsOfServiceAction,
     {
-      onExecute: () => {
+      onSuccess: () => {
         nextStep();
       },
       onError: () => {
@@ -202,7 +202,7 @@ export function OnboardingProvider({
   const createWorkspaceActionState = useOptimisticAction(
     createWorkspaceAction,
     {
-      onExecute: () => {
+      onSuccess: () => {
         nextStep();
       },
       currentState: null,
