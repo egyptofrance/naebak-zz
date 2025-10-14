@@ -113,7 +113,7 @@ export function FinishingUp() {
   useMinDelayCondition({
     enabled: currentStepId === "FINISHING_UP",
     onComplete: () => {
-      router.push("/dashboard");
+      router.push("/home");
     },
     minDelayMs: 500,
     condition: true,
